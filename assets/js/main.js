@@ -7,7 +7,7 @@ import { renderCombos, renderWines } from './catalog.js';
 import { renderBox, renderCartView, setShippingDisplay } from './box.js';
 import { showToast, toggleCart, initAgeGate, initFaq, isAgeConfirmed, currency } from './ui.js';
 import { maskCep, onlyDigits, lookupCep, quoteShipping } from './shipping.js';
-import { beginCheckout } from './checkout.js';
+import { beginCheckout, isCheckoutEnabled } from './checkout.js';
 
 function refreshAll() {
   renderWines();
@@ -91,6 +91,15 @@ function wireCheckout() {
   const ageBox = document.getElementById('age-confirm-checkbox');
   const msg = document.getElementById('checkout-message');
   if (!btn) return;
+
+  if (!isCheckoutEnabled()) {
+    // Pagamento online ainda não está ligado (falta chave Stripe/Vercel):
+    // o pedido sai pelo WhatsApp e o rótulo diz isso ao cliente.
+    const label = btn.querySelector('span');
+    if (label) label.textContent = 'Finalizar pelo WhatsApp';
+    const hint = document.getElementById('checkout-hint');
+    if (hint) hint.textContent = 'Pagamento online em ativação: abrimos o WhatsApp com o resumo do seu pedido para fechar com PIX ou cartão.';
+  }
 
   btn.addEventListener('click', async () => {
     if (ageBox && !ageBox.checked) {

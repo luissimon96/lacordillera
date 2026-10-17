@@ -7,6 +7,7 @@ Cada item diz **o quê**, **onde** e **por quê**. O código está pronto; falta
 | # | Item | Onde | Por quê |
 |---|---|---|---|
 | 1 | `STRIPE_SECRET_KEY` (produção) | Vercel → env | sem ela o checkout não cria a sessão |
+| 1b | Ligar o pagamento online: `CHECKOUT_ENABLED: true` | `index.html` (`window.LC_CONFIG`) e `assets/js/config.js` | até então o botão manda o pedido pelo WhatsApp e **não** chama a API |
 | 2 | `STRIPE_WEBHOOK_SECRET` | Vercel → env | sem ela o pedido nunca é confirmado como pago |
 | 3 | Habilitar **PIX** e **cartão** no Stripe | Stripe → Payment methods | PIX/cartão exigem ativação na conta |
 | 4 | `SITE_URL` e `SITE_ORIGINS` | Vercel → env | redirect e CORS do checkout |

@@ -5,6 +5,9 @@
 const defaults = {
   // URL base da API serverless na Vercel (sem barra no fim). TODO: trocar pela URL real do deploy.
   API_BASE_URL: 'https://lacordillera.vercel.app',
+  // Liga o pagamento online (Stripe via API na Vercel). false = o botão leva ao WhatsApp
+  // com o resumo do pedido. TODO: virar true só depois das chaves Stripe + deploy da Vercel.
+  CHECKOUT_ENABLED: false,
   // WhatsApp de suporte (formato 55 + DDD + número). TODO: número real.
   WHATSAPP_NUMBER: '5545999999999',
   // GA4 Measurement ID. Deixe vazio para desativar. TODO: G-XXXXXXXXXX.

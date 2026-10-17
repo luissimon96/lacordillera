@@ -51,11 +51,27 @@ Depois do deploy da Vercel, confirme que aponta para a URL real:
 
 ```js
 // index.html
-window.LC_CONFIG = { API_BASE_URL: 'https://lacordillera.vercel.app' };
+window.LC_CONFIG = {
+  API_BASE_URL: 'https://lacordillera.vercel.app', // URL real do deploy
+  CHECKOUT_ENABLED: true,                          // liga o pagamento online
+};
 ```
 
 Confirme também `SITE_ORIGINS` na Vercel contendo a origem do site
 (`https://luissimon96.github.io`), senão o navegador bloqueia a chamada por CORS.
+
+### A chave `CHECKOUT_ENABLED`
+
+Enquanto ela for `false` (padrão no `assets/js/config.js` **e** no `index.html`), o botão do
+carrinho vira **"Finalizar pelo WhatsApp"**: abre o WhatsApp com o resumo do pedido (itens,
+subtotal, frete, CEP) e **não** chama a API. Ligue (`true`) apenas depois de:
+
+1. Vercel no ar com as env vars da seção 2; e
+2. `API_BASE_URL` apontando para esse deploy.
+
+O teste `npm run proof:browser` cobre os dois modos: com a chave desligada ele exige que o
+resumo vá para o WhatsApp e que **nenhuma** chamada saia para `/api/`.
+
 
 ## 6. Teste de ponta a ponta (antes de vender)
 

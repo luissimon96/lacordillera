@@ -482,7 +482,7 @@
                 <span>Finalizar Compra Segura</span>
             </button>
             <p id="checkout-message" aria-live="polite" class="text-[11px] text-rose-400 min-h-[14px]"></p>
-            <p class="text-[10.5px] text-gray-500 text-center leading-relaxed">
+            <p id="checkout-hint" class="text-[10.5px] text-gray-500 text-center leading-relaxed">
                 Você será direcionado ao checkout seguro para pagar com PIX ou cartão. O frete e o total são recalculados no servidor.
             </p>
         </div>
@@ -499,7 +499,10 @@
     <!-- Overrides de configuração da loja (opcional). Ver assets/js/config.js. -->
     <script>
         window.LC_CONFIG = {
-            API_BASE_URL: 'https://lacordillera.vercel.app'
+            API_BASE_URL: 'https://lacordillera.vercel.app',
+            // Liga o pagamento online (Stripe via Vercel). Trocar para true SÓ depois
+            // do deploy da API + chaves Stripe em produção. Ver docs/GO-LIVE.md.
+            CHECKOUT_ENABLED: false
         };
     </script>
     <script type="module" src="assets/js/main.js"></script>

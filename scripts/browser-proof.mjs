@@ -201,6 +201,26 @@ try {
   await evaluate('document.querySelector("[data-faq-question]").click()');
   ok(await evaluate('document.querySelector("[data-faq-question]").getAttribute("aria-expanded")') === 'true', 'FAQ expande com aria-expanded');
 
+  // Checkout desligado (CHECKOUT_ENABLED=false): o pedido tem de sair pelo WhatsApp,
+  // com o resumo do carrinho, e NENHUMA chamada pode ir para /api/.
+  await evaluate(`(() => {
+    window.__wa = null;
+    window.open = (u) => { window.__wa = u; return {}; };
+    window.__fetches = [];
+    const of = window.fetch;
+    window.fetch = (...a) => { window.__fetches.push(String(a[0])); return of(...a); };
+  })()`);
+  ok(await evaluate('document.getElementById("checkout-btn").querySelector("span").textContent.trim()') === 'Finalizar pelo WhatsApp', 'checkout desligado troca o rótulo para WhatsApp');
+  ok((await evaluate('document.getElementById("checkout-hint").textContent')).includes('WhatsApp'), 'checkout desligado explica o fallback ao cliente');
+  await evaluate('(() => { const b = document.getElementById("age-confirm-checkbox"); b.checked = true; })()');
+  await evaluate('document.getElementById("checkout-btn").click()');
+  await sleep(400);
+  const wa = await evaluate('window.__wa');
+  ok(typeof wa === 'string' && wa.startsWith('https://wa.me/'), 'checkout desligado abre o WhatsApp', wa);
+  ok(typeof wa === 'string' && decodeURIComponent(wa).includes('6x El Supremo Malbec'), 'resumo do pedido vai na mensagem do WhatsApp', wa);
+  ok(typeof wa === 'string' && !decodeURIComponent(wa).includes('javascript:'), 'link do WhatsApp não injeta javascript', wa && wa.slice(0, 80));
+  ok((await evaluate('window.__fetches.filter((u) => u.includes("/api/")).length')) === 0, 'checkout desligado não chama a API');
+
   ok(pageErrors.length === 0, 'nenhuma exceção de página', pageErrors);
   const relevant = consoleErrors.filter((e) => !/tailwind|cdn|net::ERR|Failed to load resource|viacep/i.test(e));
   ok(relevant.length === 0, 'nenhum erro de console relevante', relevant);
