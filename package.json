@@ -4,8 +4,17 @@
   "private": true,
   "description": "Site estatico La Cordillera - vinhos argentinos premium",
   "scripts": {
-    "test": "html-validate index.html la_cordillera_vinhos_argentinos_premium.html",
-    "build": "node scripts/build-site.mjs"
+    "test": "html-validate index.html la_cordillera_vinhos_argentinos_premium.html sucesso.html cancelado.html 404.html pages/prazos.html pages/troca-devolucao.html pages/termos.html pages/privacidade.html",
+    "test:api": "node --test \"tests/**/*.test.js\"",
+    "test:all": "npm run test && npm run test:api",
+    "build": "node scripts/build-site.mjs",
+    "proof:build": "node scripts/verify-build.mjs",
+    "proof:browser": "node scripts/browser-proof.mjs",
+    "proof:consumer": "npm run build && npm run proof:browser",
+    "verify": "npm run test:all && npm run build && npm run proof:build"
+  },
+  "dependencies": {
+    "stripe": "^16.12.0"
   },
   "devDependencies": {
     "html-validate": "^9.0.0"

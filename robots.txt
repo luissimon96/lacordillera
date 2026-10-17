@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /sucesso.html
+Disallow: /cancelado.html
+
+Sitemap: https://luissimon96.github.io/lacordillera/sitemap.xml
