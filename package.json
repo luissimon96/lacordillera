@@ -1,0 +1,13 @@
+{
+  "name": "lacordillera",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site estatico La Cordillera - vinhos argentinos premium",
+  "scripts": {
+    "test": "html-validate index.html la_cordillera_vinhos_argentinos_premium.html",
+    "build": "node scripts/build-site.mjs"
+  },
+  "devDependencies": {
+    "html-validate": "^9.0.0"
+  }
+}
