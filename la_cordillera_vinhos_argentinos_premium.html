@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Cordillera | Vinhos Premium Argentinos no Brasil</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        wine: {
+                            50: '#fdf2f4',
+                            100: '#fbe8eb',
+                            200: '#f6d5da',
+                            300: '#eaaab5',
+                            400: '#da788b',
+                            500: '#bc475c',
+                            600: '#9b3246',
+                            700: '#7d2434',
+                            800: '#521922',
+                            900: '#2d0a10', // Burgundy Deep
+                            950: '#1a0408'
+                        },
+                        gold: {
+                            50: '#fdfbf4',
+                            100: '#faf4df',
+                            200: '#f2e4b8',
+                            300: '#e6cd84',
+                            400: '#d9b150',
+                            500: '#c5922e', // Premium gold
+                            600: '#aa7522',
+                            700: '#85541b',
+                            800: '#694119',
+                            900: '#573418',
+                            950: '#331c0a'
+                        },
+                        graphite: {
+                            50: '#f6f6f7',
+                            100: '#eef0f1',
+                            200: '#dcdfe2',
+                            300: '#bfcbcf',
+                            400: '#9aa8ae',
+                            500: '#7a8b92',
+                            600: '#63737a',
+                            700: '#525f65',
+                            800: '#1e1e24', // Deep slate
+                            900: '#121216', // Dark background
+                            950: '#0a0a0c'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* Custom scrollbar to match dark wine aesthetic */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121216;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #521922;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #c5922e;
+        }
+        /* Custom gold glow */
+        .gold-glow:hover {
+            box-shadow: 0 0 15px rgba(197, 146, 46, 0.35);
+        }
+        .wine-glow:hover {
+            box-shadow: 0 0 15px rgba(155, 50, 70, 0.45);
+        }
+    </style>
+</head>
+<body class="bg-graphite-950 text-gray-100 font-sans selection:bg-wine-700 selection:text-white antialiased overflow-x-hidden">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-graphite-950/90 backdrop-blur-md border-b border-white/5 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Elegant Fictional Logo -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 border-2 border-gold-500 rounded-full flex items-center justify-center transition-all duration-300 group-hover:border-wine-500 group-hover:rotate-12">
+                    <span class="font-serif text-lg font-bold text-gold-500 group-hover:text-wine-400">LC</span>
+                </div>
+                <div>
+                    <span class="block font-serif text-xl tracking-widest font-semibold text-white group-hover:text-gold-400 transition-colors">LA CORDILLERA</span>
+                    <span class="block text-[9px] tracking-[0.25em] text-gold-500 uppercase">Selección de Mendoza</span>
+                </div>
+            </a>
+
+            <!-- Quick Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm uppercase tracking-wider font-medium text-gray-300">
+                <a href="#combos" class="hover:text-gold-400 transition-colors">Combos Exclusivos</a>
+                <a href="#kit" class="hover:text-gold-400 transition-colors">Monte seu Kit</a>
+                <a href="#sobre" class="hover:text-gold-400 transition-colors">Nossa Rota</a>
+            </nav>
+
+            <!-- Cart Trigger Button with badge -->
+            <div class="flex items-center space-x-4">
+                <button onclick="toggleCart(true)" class="relative p-2.5 rounded-full bg-graphite-800 text-white border border-white/10 hover:border-gold-500/50 hover:bg-graphite-700 transition-all duration-300 group">
+                    <span class="absolute -top-1.5 -right-1.5 min-w-5 h-5 px-1.5 flex items-center justify-center text-[10px] font-bold text-black bg-gold-400 rounded-full transition-transform duration-300 scale-100 group-hover:scale-110" id="cart-badge-count">0</span>
+                    <!-- Cart Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-gray-200 group-hover:text-gold-400 transition-colors">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-[95vh] flex items-center justify-center pt-24 overflow-hidden bg-black">
+        <!-- Background Image with Custom Premium Overlays -->
+        <div class="absolute inset-0 z-0">
+            <!-- Fallback solid dark background then load premium vineyard photo -->
+            <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?q=80&w=2070&auto=format&fit=crop" 
+                 alt="Vinhedos Argentinos Mendoza" 
+                 class="w-full h-full object-cover opacity-35 scale-105 transform motion-safe:animate-[pulse_8s_infinite]"
+                 onerror="this.style.display='none'">
+            <!-- Dark Vignette Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-graphite-950 via-graphite-950/80 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-graphite-950 to-transparent opacity-90"></div>
+            <!-- Subtle wine red radial light in the background -->
+            <div class="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-wine-900/40 rounded-full blur-[120px] pointer-events-none"></div>
+            <div class="absolute bottom-10 right-10 w-[300px] h-[300px] bg-gold-900/10 rounded-full blur-[100px] pointer-events-none"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 grid lg:grid-cols-12 gap-12 items-center">
+            <!-- Hero Left: Text & Pitch -->
+            <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+                <!-- Badge -->
+                <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-wine-950/80 border border-wine-500/30 text-xs tracking-wider uppercase text-gold-400">
+                    <span class="w-1.5 h-1.5 rounded-full bg-gold-400 animate-ping"></span>
+                    <span>Importação Direta de Mendoza</span>
+                </div>
+
+                <!-- Main Hook -->
+                <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1]">
+                    O requinte dos vinhos <br class="hidden sm:inline">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 via-gold-300 to-wine-400 italic">Argentinos</span> na sua mesa.
+                </h1>
+
+                <!-- Body copy -->
+                <p class="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+                    Trazemos rótulos exclusivos diretamente das melhores bodegas da Argentina para o Brasil. Monte sua caixa personalizada ou aproveite nossos combos criados por sommeliers com condições especiais de frete.
+                </p>
+
+                <!-- CTAs -->
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                    <a href="#kit" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-wine-700 to-wine-800 text-white font-medium tracking-wider uppercase text-sm rounded-lg border border-wine-500/50 hover:from-wine-600 hover:to-wine-700 transition-all duration-300 shadow-lg hover:shadow-wine-900/50 text-center wine-glow">
+                        Monte seu Kit Personalizado
+                    </a>
+                    <a href="#combos" class="w-full sm:w-auto px-8 py-4 bg-graphite-900/80 hover:bg-graphite-800 text-gray-200 hover:text-white font-medium tracking-wider uppercase text-sm rounded-lg border border-white/10 hover:border-gold-500/40 transition-all duration-300 text-center">
+                        Ver Combos com Desconto
+                    </a>
+                </div>
+
+                <!-- Trust Badges -->
+                <div class="grid grid-cols-3 gap-6 pt-8 border-t border-white/5 max-w-lg mx-auto lg:mx-0">
+                    <div>
+                        <span class="block font-serif text-xl sm:text-2xl font-bold text-gold-400">100%</span>
+                        <span class="block text-xs text-gray-400 uppercase tracking-widest mt-1">Origem Garantida</span>
+                    </div>
+                    <div>
+                        <span class="block font-serif text-xl sm:text-2xl font-bold text-gold-400">Mendoza</span>
+                        <span class="block text-xs text-gray-400 uppercase tracking-widest mt-1">Curadoria Direta</span>
+                    </div>
+                    <div>
+                        <span class="block font-serif text-xl sm:text-2xl font-bold text-gold-400">Caixa de 6</span>
+                        <span class="block text-xs text-gray-400 uppercase tracking-widest mt-1">Frete Grátis</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Right: Dynamic visual showcase of premium bottles -->
+            <div class="lg:col-span-5 relative flex justify-center items-center">
+                <div class="relative w-72 h-96 sm:w-80 sm:h-[420px] rounded-2xl bg-gradient-to-b from-graphite-800/80 to-wine-950/90 border border-white/10 p-6 flex flex-col justify-between overflow-hidden shadow-2xl">
+                    <!-- Absolute glow effect -->
+                    <div class="absolute -top-12 -left-12 w-40 h-40 bg-wine-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                    <div class="absolute -bottom-12 -right-12 w-40 h-40 bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                    <!-- Bottle Mock/Silhoute in SVG for sharp premium presentation -->
+                    <div class="flex-1 flex items-center justify-center py-4">
+                        <svg class="w-auto h-56 text-wine-500 filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.6)]" viewBox="0 0 100 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Bottle Body -->
+                            <path d="M50 15C49 15 48 16 48 17V60C48 75 35 90 28 105C22 118 20 135 20 155V275C20 285 28 290 35 290H65C72 290 80 285 80 275V155C80 135 78 118 72 105C65 90 52 75 52 60V17C52 16 51 15 50 15Z" fill="#1f070c" stroke="#c5922e" stroke-width="2.5"/>
+                            <!-- Label -->
+                            <rect x="25" y="145" width="50" height="75" rx="2" fill="#faf4df" stroke="#aa7522" stroke-width="1"/>
+                            <!-- Label Brand -->
+                            <text x="50" y="175" fill="#521922" font-family="Playfair Display, serif" font-weight="bold" font-size="8" text-anchor="middle" letter-spacing="1">MALBEC</text>
+                            <text x="50" y="187" fill="#1e1e24" font-family="Inter, sans-serif" font-size="5" text-anchor="middle" letter-spacing="0.5">RESERVA OAK</text>
+                            <line x1="35" y1="195" x2="65" y2="195" stroke="#aa7522" stroke-width="0.5"/>
+                            <text x="50" y="205" fill="#85541b" font-family="Playfair Display, serif" font-style="italic" font-size="6" text-anchor="middle">Mendoza</text>
+                            <!-- Bottle Neck foil -->
+                            <path d="M48 17H52V45H48V17Z" fill="#c5922e"/>
+                        </svg>
+                    </div>
+
+                    <div class="text-center space-y-2 z-10">
+                        <p class="font-serif text-xl font-bold text-white">Rótulo da Semana</p>
+                        <p class="text-xs text-gold-400 uppercase tracking-widest">Malbec Gran Reserva Especial</p>
+                        <div class="flex justify-center items-center space-x-2 pt-1">
+                            <span class="text-sm text-gray-400 line-through">R$ 189,00</span>
+                            <span class="text-lg font-bold text-white">R$ 139,90</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: COMBOS PRONTOS (SUGESTÕES COM DESCONTO) -->
+    <section id="combos" class="py-24 bg-graphite-900 border-t border-white/5 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-xs font-semibold text-gold-500 uppercase tracking-[0.25em]">Combos Exclusivos</span>
+                <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white">Sugestões de Nossos Sommeliers</h2>
+                <div class="w-16 h-1 bg-wine-500 mx-auto rounded-full"></div>
+                <p class="text-gray-400 font-light max-w-lg mx-auto">
+                    Kits prontos com descontos imbatíveis para quem deseja praticidade e uma degustação completa das varietais argentinas.
+                </p>
+            </div>
+
+            <!-- Combos Grid -->
+            <div class="grid md:grid-cols-3 gap-8" id="combos-container">
+                <!-- Combos will be rendered dynamically by JS for robust state handling -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 3: MONTE SEU KIT PERSONALIZADO -->
+    <section id="kit" class="py-24 bg-graphite-950 relative overflow-hidden">
+        <!-- Background light visual -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-wine-900/10 rounded-full blur-[160px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <div class="text-center max-w-3xl mx-auto mb-12 space-y-4">
+                <span class="text-xs font-semibold text-gold-500 uppercase tracking-[0.25em]">Crie sua própria experiência</span>
+                <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white">Monte seu Kit Personalizado</h2>
+                <div class="w-16 h-1 bg-wine-500 mx-auto rounded-full"></div>
+                <p class="text-gray-400 font-light">
+                    Escolha as garrafas que deseja de acordo com a sua preferência. Nós preparamos sua embalagem especial de forma segura.
+                </p>
+            </div>
+
+            <!-- Gamified Progress Bar Box Helper -->
+            <div class="max-w-3xl mx-auto bg-gradient-to-r from-graphite-800 to-wine-950/80 border border-wine-500/20 p-6 rounded-2xl mb-16 shadow-xl">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                    <div class="space-y-1">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-lg font-semibold text-white">Progresso da sua Caixa</span>
+                            <span class="px-2 py-0.5 text-[10px] uppercase font-bold bg-gold-500 text-black rounded" id="shipping-status-badge">FRETE PAGO</span>
+                        </div>
+                        <p class="text-xs text-gray-400" id="box-helper-text">Adicione vinhos individuais para ganhar Frete Grátis na caixa de 6!</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-2xl font-serif font-bold text-gold-400" id="box-bottle-count">0</span>
+                        <span class="text-sm text-gray-400">/ 6 Garrafas</span>
+                    </div>
+                </div>
+
+                <!-- Interactive Box Visualization Grid -->
+                <div class="grid grid-cols-6 gap-2 sm:gap-4 mb-6" id="box-slots-container">
+                    <!-- Slots rendered dynamically -->
+                </div>
+
+                <!-- Custom Visual Progress Bar -->
+                <div class="w-full bg-graphite-900 rounded-full h-3.5 p-0.5 border border-white/5 overflow-hidden">
+                    <div id="box-progress-bar" class="bg-gradient-to-r from-wine-600 via-wine-500 to-gold-500 h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
+                </div>
+
+                <!-- Feedback Message -->
+                <div class="mt-4 flex items-center space-x-2 text-xs" id="box-feedback-area">
+                    <svg class="w-4 h-4 text-gold-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span class="text-gray-300" id="box-feedback-text">Faltam 6 garrafas avulsas para completar a caixa e liberar o Frete Grátis.</span>
+                </div>
+            </div>
+
+            <!-- Single Bottle Showcase Grid -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8" id="wines-container">
+                <!-- Wines rendered dynamically -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 4: COMO FUNCIONA / CONFIANÇA -->
+    <section id="sobre" class="py-20 bg-graphite-900 border-t border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 text-center">
+                <!-- Step 1 -->
+                <div class="p-6 space-y-4">
+                    <div class="w-12 h-12 bg-wine-950 border border-wine-500/30 rounded-xl flex items-center justify-center mx-auto text-gold-400 font-bold text-lg">1</div>
+                    <h3 class="font-serif text-lg font-semibold text-white">Importação Própria</h3>
+                    <p class="text-xs text-gray-400 font-light leading-relaxed">Adquirimos os vinhos diretamente nas bodegas argentinas em Mendoza e Salta, garantindo autenticidade e custos reduzidos.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="p-6 space-y-4">
+                    <div class="w-12 h-12 bg-wine-950 border border-wine-500/30 rounded-xl flex items-center justify-center mx-auto text-gold-400 font-bold text-lg">2</div>
+                    <h3 class="font-serif text-lg font-semibold text-white">Montagem Flexível</h3>
+                    <p class="text-xs text-gray-400 font-light leading-relaxed">Selecione vinhos avulsos das suas uvas prediletas ou compre combos desenhados para experiências especiais.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="p-6 space-y-4">
+                    <div class="w-12 h-12 bg-wine-950 border border-wine-500/30 rounded-xl flex items-center justify-center mx-auto text-gold-400 font-bold text-lg">3</div>
+                    <h3 class="font-serif text-lg font-semibold text-white">Caixa Segura de 6</h3>
+                    <p class="text-xs text-gray-400 font-light leading-relaxed">Suas garrafas são cuidadosamente acomodadas em caixas protetoras especiais com divisórias de alta densidade.</p>
+                </div>
+                <!-- Step 4 -->
+                <div class="p-6 space-y-4">
+                    <div class="w-12 h-12 bg-wine-950 border border-wine-500/30 rounded-xl flex items-center justify-center mx-auto text-gold-400 font-bold text-lg">4</div>
+                    <h3 class="font-serif text-lg font-semibold text-white">Finalização via WhatsApp</h3>
+                    <p class="text-xs text-gray-400 font-light leading-relaxed">Calcule seu frete e feche diretamente conosco via WhatsApp. Sem burocracias, com atendimento consultivo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-graphite-950 py-12 border-t border-white/5 text-gray-500 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 border border-gold-500/50 rounded-full flex items-center justify-center">
+                    <span class="font-serif text-xs font-bold text-gold-500">LC</span>
+                </div>
+                <div>
+                    <span class="block font-serif text-sm tracking-widest font-semibold text-white">LA CORDILLERA</span>
+                    <span class="block text-[8px] tracking-wider text-gray-400 uppercase">Vinhos Argentinos no Brasil</span>
+                </div>
+            </div>
+            <p class="text-center md:text-right text-xs text-gray-400">
+                &copy; 2026 La Cordillera Selección. Todos os direitos reservados. Beba com moderação. Venda proibida para menores de 18 anos.
+            </p>
+        </div>
+    </footer>
+
+    <!-- CART SIDE DRAWER (OCULTO POR PADRÃO, SLIDES IN FROM RIGHT) -->
+    <div id="cart-drawer-overlay" onclick="toggleCart(false)" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    
+    <div id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-graphite-900 border-l border-white/10 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
+        <!-- Drawer Header -->
+        <div class="p-6 border-b border-white/5 flex items-center justify-between bg-graphite-950">
+            <div class="flex items-center space-x-2">
+                <span class="font-serif text-xl font-bold text-white">Seu Pedido</span>
+                <span class="px-2 py-0.5 text-xs bg-wine-900 text-gold-300 font-semibold rounded-full" id="drawer-item-count">0 itens</span>
+            </div>
+            <button onclick="toggleCart(false)" class="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-graphite-800 transition-colors">
+                <!-- Close Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Progress Box inside Cart too (Excellent UX reinforcement) -->
+        <div class="p-4 bg-wine-950/40 border-b border-wine-500/10" id="cart-progress-container">
+            <div class="flex justify-between items-center mb-1 text-xs text-gray-300">
+                <span id="cart-box-helper-label">Caixa de 6 Garrafas Avulsas:</span>
+                <span class="font-bold text-gold-400" id="cart-box-helper-ratio">0/6</span>
+            </div>
+            <div class="w-full bg-graphite-950 rounded-full h-2 p-0.5 overflow-hidden">
+                <div id="cart-box-progress-bar" class="bg-gradient-to-r from-wine-600 to-gold-500 h-1 rounded-full transition-all duration-500" style="width: 0%"></div>
+            </div>
+            <p class="text-[10px] text-gray-400 mt-1" id="cart-box-shipping-alert">Ganhe Frete Grátis montando caixas com 6 vinhos avulsos!</p>
+        </div>
+
+        <!-- Drawer Content (Scrollable list of items) -->
+        <div class="flex-1 overflow-y-auto p-6 space-y-4" id="cart-items-list">
+            <!-- Dynamic Cart Items Rendered Here -->
+            <div class="h-full flex flex-col items-center justify-center text-center text-gray-400 space-y-4">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-16 h-16 text-gray-500">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                </svg>
+                <p class="font-serif text-lg">Seu carrinho está vazio</p>
+                <p class="text-xs max-w-xs">Adicione combos ou monte seu kit de vinhos na vitrine abaixo para começar.</p>
+                <button onclick="toggleCart(false)" class="mt-2 text-sm text-gold-400 underline hover:text-gold-300">Explorar catálogo</button>
+            </div>
+        </div>
+
+        <!-- Drawer Footer (Calculations and Checkout CTA) -->
+        <div class="p-6 border-t border-white/5 bg-graphite-950 space-y-4">
+            <!-- CEP Simulator -->
+            <div class="p-3 bg-graphite-950/60 border border-white/5 rounded-xl space-y-2">
+                <label class="text-xs text-gray-400 uppercase tracking-wider font-medium">Simular Frete</label>
+                <div class="flex space-x-2">
+                    <input type="text" id="cep-input" maxlength="9" placeholder="CEP (ex: 01310-000)"
+                           class="flex-1 px-3 py-2 bg-graphite-900 border border-white/10 rounded-lg text-xs text-white placeholder-gray-500 focus:outline-none focus:border-gold-500/50 focus:ring-1 focus:ring-gold-500/20 transition-colors"
+                           oninput="if(this.value.length>=8)calculateShipping();">
+                    <button onclick="calculateShipping()" class="px-3 py-2 bg-wine-800 hover:bg-wine-700 text-white text-xs font-medium rounded-lg border border-wine-700/50 transition-colors">
+                        Calcular
+                    </button>
+                </div>
+                <div id="cep-feedback" class="text-xs text-gray-400 mt-1">Informe seu CEP para calcular o frete.</div>
+            </div>
+
+            <div class="space-y-2 text-sm">
+                <div class="flex justify-between text-gray-400">
+                    <span>Subtotal:</span>
+                    <span class="text-white font-medium" id="cart-subtotal">R$ 0,00</span>
+                </div>
+                <div class="flex justify-between text-gray-400">
+                    <span>Frete:</span>
+                    <span class="text-white font-medium" id="cart-shipping-fee">A calcular</span>
+                </div>
+                <div class="flex justify-between text-base font-bold text-white pt-2 border-t border-white/5">
+                    <span>Total estimado:</span>
+                    <span class="text-gold-400" id="cart-total">R$ 0,00</span>
+                </div>
+            </div>
+
+            <!-- Checkout via WhatsApp button -->
+            <button onclick="finalizeOrder()" id="checkout-btn" disabled class="w-full py-4 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white font-semibold tracking-wider uppercase text-sm rounded-lg hover:from-emerald-500 hover:to-emerald-600 focus:outline-none transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg disabled:opacity-40 disabled:cursor-not-allowed">
+                <!-- WhatsApp SVG icon -->
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.262 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.97C16.59 1.967 14.153.943 11.533.943c-5.445 0-9.87 4.371-9.874 9.799-.001 1.942.512 3.846 1.49 5.513L1.879 21.05l4.768-1.896zM17.524 14.3c-.27-.135-1.595-.788-1.842-.877-.247-.09-.427-.135-.607.135-.18.27-.697.877-.855 1.057-.157.18-.315.202-.585.067-.27-.135-1.14-.42-2.172-1.341-.803-.715-1.345-1.6-1.503-1.87-.157-.27-.017-.417.118-.552.122-.122.27-.315.405-.471.135-.158.18-.27.27-.45.09-.18.045-.338-.022-.473-.068-.135-.607-1.462-.832-2.003-.22-.527-.44-.455-.607-.463-.157-.007-.337-.008-.517-.008s-.473.067-.72.338c-.247.27-.945.923-.945 2.25s.967 2.61 1.102 2.79c.135.18 1.902 2.904 4.6 4.07.643.277 1.145.442 1.536.566.647.206 1.234.177 1.698.108.518-.077 1.595-.652 1.82-.1282.225-.63.225-1.17.157-1.261-.067-.09-.247-.135-.517-.27z"/>
+                </svg>
+                <span>Enviar Pedido via WhatsApp</span>
+            </button>
+            <p class="text-[10.5px] text-gray-500 text-center leading-relaxed">
+                Você será direcionado para o WhatsApp com seu carrinho estruturado onde calcularemos as taxas especiais de envio para seu endereço no Brasil.
+            </p>
+        </div>
+    </div>
+
+    <!-- UI TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-6 left-6 z-50 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300 bg-wine-900 border border-gold-500 text-white px-5 py-3 rounded-lg shadow-xl flex items-center space-x-3 max-w-sm">
+        <svg class="w-5 h-5 text-gold-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span id="toast-text" class="text-xs font-medium">Item adicionado com sucesso!</span>
+    </div>
+
+    <!-- APPLICATION LOGIC (Vanilla JS) -->
+    <script>
+        // CONFIGURATIONS (Change WhatsApp number here)
+        const CONTACT_WHATSAPP_NUMBER = "5545999999999"; // Ex: 55 + DDD + Número
+
+        // 1. DATA MODELS
+        const WINES_DATABASE = [
+            {
+                id: "wine-1",
+                name: "El Supremo Malbec",
+                type: "Tinto • Luján de Cuyo",
+                grape: "Malbec",
+                price: 119.90,
+                year: "2023",
+                description: "Encorpado, notas de ameixas pretas e carvalho francês tostado.",
+                rating: 4.8
+            },
+            {
+                id: "wine-2",
+                name: "Altos del Valle Cabernet Franc",
+                type: "Tinto • Valle de Uco",
+                grape: "Cabernet Franc",
+                price: 149.90,
+                year: "2022",
+                description: "Elegante, aromas de pimentão doce, frutas vermelhas maduras e especiarias.",
+                rating: 4.9
+            },
+            {
+                id: "wine-3",
+                name: "Sol de Cafayate Torrontés",
+                type: "Branco • Salta",
+                grape: "Torrontés",
+                price: 99.90,
+                year: "2024",
+                description: "Fresco, floral, aroma cítrico marcante e excelente acidez mineral.",
+                rating: 4.7
+            },
+            {
+                id: "wine-4",
+                name: "Andes Mist Syrah Reserva",
+                type: "Tinto • San Juan",
+                grape: "Syrah",
+                price: 129.90,
+                year: "2022",
+                description: "Macio com toques de pimenta negra, couro e final de boca prolongado.",
+                rating: 4.6
+            },
+            {
+                id: "wine-5",
+                name: "Catedral de Piedra Pinot Noir",
+                type: "Tinto • Patagonia",
+                grape: "Pinot Noir",
+                price: 159.90,
+                year: "2023",
+                description: "Frutado de corpo leve, toque terroso delicado e extrema elegância.",
+                rating: 4.9
+            },
+            {
+                id: "wine-6",
+                name: "Viejo Viñedo Bonarda",
+                type: "Tinto • Mendoza",
+                grape: "Bonarda",
+                price: 109.90,
+                year: "2023",
+                description: "Frutas negras frescas, taninos aveludados e ótima persistência.",
+                rating: 4.7
+            },
+            {
+                id: "wine-7",
+                name: "Alma del Plata Carménère",
+                type: "Tinto • Mendoza",
+                grape: "Carménère",
+                price: 124.90,
+                year: "2022",
+                description: "Aveludado, notas de pimentão vermelho, frutas negras e toques de chocolate amargo.",
+                rating: 4.7
+            },
+            {
+                id: "wine-8",
+                name: "Raíces de La Rioja Tempranillo",
+                type: "Tinto • La Rioja",
+                grape: "Tempranillo",
+                price: 139.90,
+                year: "2022",
+                description: "Taninos sedosos, aroma de frutas vermelhas maduras e especiarias sutis.",
+                rating: 4.6
+            },
+            {
+                id: "wine-9",
+                name: "Cumbre Andina Extra Brut",
+                type: "Espumante • Mendoza",
+                grape: "Chardonnay/Pinot Noir",
+                price: 169.90,
+                year: "2024",
+                description: "Método Charmat, bolhas finas e persistentes, frescor cítrico e final seco elegante.",
+                rating: 4.8
+            },
+            {
+                id: "wine-10",
+                name: "Valle de Uco Sauvignon Blanc",
+                type: "Branco • Valle de Uco",
+                grape: "Sauvignon Blanc",
+                price: 109.90,
+                year: "2024",
+                description: "Cítrico vibrante, notas de maracujá e ervas frescas com acidez equilibrada.",
+                rating: 4.7
+            },
+            {
+                id: "wine-11",
+                name: "Patagonia Andina Chardonnay",
+                type: "Branco • Patagonia",
+                grape: "Chardonnay",
+                price: 144.90,
+                year: "2023",
+                description: "Fermentado em barrica, cremoso com notas de baunilha, pêssego e toques amanteigados.",
+                rating: 4.8
+            },
+            {
+                id: "wine-12",
+                name: "Gran Assemblage Mendoza",
+                type: "Tinto • Mendoza",
+                grape: "Corte Especial",
+                price: 189.90,
+                year: "2022",
+                description: "Corte de Malbec, Cabernet Sauvignon e Merlot, complexo e estruturado com longo potencial de guarda.",
+                rating: 4.9
+            }
+        ];
+
+        const COMBOS_DATABASE = [
+            {
+                id: "combo-1",
+                name: "Combo Malbec Absoluto",
+                description: "3 Garrafas premium selecionadas do clássico e encorpado Malbec Argentino.",
+                itemsDetail: "Inclui: 3x El Supremo Malbec (Safra 2023)",
+                originalPrice: 359.70,
+                promoPrice: 299.90,
+                saving: 59.80,
+                imageText: "3x Malbec"
+            },
+            {
+                id: "combo-2",
+                name: "Combo Experiência Reserva",
+                description: "2 Garrafas de alta gama para jantares harmonizados e momentos inesquecíveis.",
+                itemsDetail: "Inclui: 1x Cabernet Franc Reserva + 1x Pinot Noir Patagonia",
+                originalPrice: 309.80,
+                promoPrice: 259.90,
+                saving: 49.90,
+                imageText: "2x Reserva"
+            },
+            {
+                id: "combo-3",
+                name: "Kit Verão Torrontés",
+                description: "4 Garrafas refrescantes perfeitas para beira da piscina e pratos leves.",
+                itemsDetail: "Inclui: 4x Sol de Cafayate Torrontés (Safra 2024)",
+                originalPrice: 399.60,
+                promoPrice: 319.90,
+                saving: 79.70,
+                imageText: "4x Torrontés"
+            }
+        ];
+
+        // SHIPPING DATA: Brazilian regions by CEP prefix
+        const SHIPPING_RATES = [
+            { prefixRange: [0, 1], region: "Sudeste (SP)", rate: 24.90 },
+            { prefixRange: [2], region: "Sudeste (RJ/ES)", rate: 24.90 },
+            { prefixRange: [3], region: "Sudeste (MG)", rate: 24.90 },
+            { prefixRange: [4], region: "Nordeste (BA/SE)", rate: 44.90 },
+            { prefixRange: [5], region: "Nordeste (PE/AL/PB/RN)", rate: 44.90 },
+            { prefixRange: [6], region: "Norte/Nordeste", rate: 54.90 },
+            { prefixRange: [7], region: "Centro-Oeste", rate: 39.90 },
+            { prefixRange: [8], region: "Sul (PR/SC)", rate: 34.90 },
+            { prefixRange: [9], region: "Sul (RS)", rate: 34.90 }
+        ];
+
+        function getShippingByCEP(cep) {
+            if (!cep || cep.length < 5) return null;
+            const digits = cep.replace(/\D/g, '');
+            if (digits.length < 5) return null;
+            const firstDigit = parseInt(digits[0], 10);
+            const entry = SHIPPING_RATES.find(r => r.prefixRange.includes(firstDigit));
+            if (!entry) return null;
+            return { region: entry.region, rate: entry.rate, display: `R$ ${entry.rate.toFixed(2)}` };
+        }
+
+        let userCEP = '';
+        let calculatedShipping = null;
+
+        function calculateShipping() {
+            const input = document.getElementById('cep-input');
+            const feedback = document.getElementById('cep-feedback');
+            const raw = input.value.replace(/\D/g, '');
+            if (raw.length < 8) {
+                feedback.innerText = 'Digite um CEP válido com 8 dígitos.';
+                feedback.className = 'text-xs text-rose-400 mt-1';
+                return;
+            }
+            userCEP = raw;
+            const result = getShippingByCEP(raw);
+            if (!result) {
+                feedback.innerText = 'CEP não encontrado. Tente novamente.';
+                feedback.className = 'text-xs text-rose-400 mt-1';
+                return;
+            }
+            calculatedShipping = result;
+            feedback.innerHTML = `Entrega para <strong>${result.region}</strong> — Frete: <strong class="text-gold-400">${result.display}</strong>`;
+            feedback.className = 'text-xs text-gray-300 mt-1';
+            renderCart();
+        }
+
+        // 2. STATE MANAGEMENT
+        let cart = [];
+
+        // 3. STORAGE HELPERS
+        function saveCartToStorage() {
+            localStorage.setItem('la_cordillera_cart', JSON.stringify(cart));
+        }
+
+        function loadCartFromStorage() {
+            const stored = localStorage.getItem('la_cordillera_cart');
+            if (stored) {
+                try {
+                    cart = JSON.parse(stored);
+                } catch(e) {
+                    cart = [];
+                }
+            }
+        }
+
+        // 4. RENDERING FUNCTIONS
+
+        // Render Ready Combos
+        function renderCombos() {
+            const container = document.getElementById('combos-container');
+            container.innerHTML = COMBOS_DATABASE.map(combo => {
+                return `
+                <div class="bg-gradient-to-b from-graphite-800 to-graphite-900 border border-white/5 rounded-2xl overflow-hidden p-6 hover:border-wine-500/40 transition-all duration-300 group flex flex-col justify-between wine-glow relative">
+                    <!-- Discount Badge -->
+                    <div class="absolute top-4 right-4 bg-gold-500 text-black font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">
+                        Economize R$ ${combo.saving.toFixed(2)}
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Combo Graphic Concept -->
+                        <div class="h-44 bg-graphite-950/60 rounded-xl flex items-center justify-center border border-white/5 relative group-hover:bg-wine-950/20 transition-colors">
+                            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#521922_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                            <div class="flex space-x-1 items-end relative z-10">
+                                <span class="text-xs bg-gold-500/20 text-gold-400 font-serif border border-gold-500/30 px-3 py-1.5 rounded-lg tracking-wider uppercase font-semibold">${combo.imageText}</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <h3 class="font-serif text-xl font-bold text-white group-hover:text-gold-400 transition-colors">${combo.name}</h3>
+                            <p class="text-xs text-gray-400 font-light leading-relaxed min-h-[40px]">${combo.description}</p>
+                            <p class="text-[11px] text-gold-500/80 italic font-medium">${combo.itemsDetail}</p>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 mt-6 border-t border-white/5 space-y-4">
+                        <div class="flex items-baseline justify-between">
+                            <span class="text-xs text-gray-500 line-through">R$ ${combo.originalPrice.toFixed(2)}</span>
+                            <div class="text-right">
+                                <span class="block text-xs text-gold-500 uppercase tracking-wider font-semibold">Oferta Especial</span>
+                                <span class="text-2xl font-serif font-bold text-white">R$ ${combo.promoPrice.toFixed(2)}</span>
+                            </div>
+                        </div>
+                        <button onclick="addComboToCart('${combo.id}')" class="w-full py-3 bg-wine-900 hover:bg-wine-800 text-white font-medium uppercase tracking-wider text-xs rounded-lg border border-wine-700/50 hover:border-wine-500 transition-all duration-300">
+                            Adicionar Combo ao Carrinho
+                        </button>
+                    </div>
+                </div>
+                `;
+            }).join('');
+        }
+
+        // Render Individual Wines Catalog
+        function renderWines() {
+            const container = document.getElementById('wines-container');
+            container.innerHTML = WINES_DATABASE.map(wine => {
+                // Check current state in cart for input value persistence
+                const cartItem = cart.find(item => item.id === wine.id && !item.isCombo);
+                const currentQty = cartItem ? cartItem.quantity : 0;
+
+                return `
+                <div class="bg-gradient-to-b from-graphite-900 to-graphite-950 border border-white/5 hover:border-gold-500/20 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 group gold-glow relative">
+                    <!-- Star rating badge -->
+                    <div class="absolute top-4 left-4 flex items-center space-x-1 bg-graphite-900/90 border border-white/10 px-2.5 py-1 rounded-full">
+                        <svg class="w-3.5 h-3.5 text-gold-500" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <span class="text-[11px] font-semibold text-white">${wine.rating}</span>
+                    </div>
+
+                    <!-- Visual stylized single bottle mock -->
+                    <div class="h-48 flex items-center justify-center py-2 mb-4 bg-graphite-900/50 rounded-xl relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/30 pointer-events-none"></div>
+                        <svg class="w-auto h-36 text-wine-600 filter drop-shadow-[0_8px_16px_rgba(0,0,0,0.5)] transform group-hover:scale-105 transition-transform duration-300" viewBox="0 0 100 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M50 15C49 15 48 16 48 17V60C48 75 35 90 28 105C22 118 20 135 20 155V275C20 285 28 290 35 290H65C72 290 80 285 80 275V155C80 135 78 118 72 105C65 90 52 75 52 60V17C52 16 51 15 50 15Z" fill="#150508" stroke="#521922" stroke-width="2"/>
+                            <rect x="28" y="145" width="44" height="65" rx="1.5" fill="#faf4df"/>
+                            <text x="50" y="175" fill="#2d0a10" font-family="Playfair Display, serif" font-weight="bold" font-size="7" text-anchor="middle">${wine.grape.toUpperCase()}</text>
+                            <text x="50" y="185" fill="#7a8b92" font-family="Inter, sans-serif" font-size="4" text-anchor="middle">${wine.year}</text>
+                            <path d="M48 17H52V40H48V17Z" fill="#9b3246"/>
+                        </svg>
+                    </div>
+
+                    <div class="space-y-2">
+                        <p class="text-xs text-gold-500 uppercase tracking-widest font-medium">${wine.type}</p>
+                        <h3 class="font-serif text-lg font-bold text-white truncate">${wine.name}</h3>
+                        <p class="text-xs text-gray-400 font-light leading-relaxed min-h-[36px]">${wine.description}</p>
+                    </div>
+
+                    <div class="pt-4 mt-4 border-t border-white/5 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-gray-500">Garrafa avulsa</span>
+                            <span class="text-xl font-serif font-bold text-white">R$ ${wine.price.toFixed(2)}</span>
+                        </div>
+
+                        <!-- Selector / Action -->
+                        <div class="flex items-center space-x-2">
+                            ${currentQty > 0 ? `
+                                <div class="flex items-center bg-graphite-900 border border-white/10 rounded-lg overflow-hidden w-full">
+                                    <button onclick="updateWineQty('${wine.id}', -1)" class="w-1/3 py-2.5 text-center text-gray-400 hover:text-white hover:bg-white/5 transition-colors font-bold text-sm">-</button>
+                                    <span class="w-1/3 text-center text-sm font-semibold text-white">${currentQty}</span>
+                                    <button onclick="updateWineQty('${wine.id}', 1)" class="w-1/3 py-2.5 text-center text-gray-400 hover:text-white hover:bg-white/5 transition-colors font-bold text-sm">+</button>
+                                </div>
+                            ` : `
+                                <button onclick="updateWineQty('${wine.id}', 1)" class="w-full py-2.5 bg-graphite-900 hover:bg-wine-950 text-white font-medium uppercase tracking-wider text-xs rounded-lg border border-white/10 hover:border-wine-500/50 transition-all duration-300">
+                                    Adicionar ao Kit
+                                </button>
+                            `}
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join('');
+        }
+
+        // Render Dynamic Gamified Box Slots
+        function renderBoxSlots() {
+            const container = document.getElementById('box-slots-container');
+            
+            // Calculate total individual bottles currently in cart
+            const individualBottlesCount = cart
+                .filter(item => !item.isCombo)
+                .reduce((total, item) => total + item.quantity, 0);
+
+            const progressPercentage = Math.min((individualBottlesCount / 6) * 100, 100);
+            
+            // Build visual grid slots
+            let slotsHTML = "";
+            for (let i = 0; i < 6; i++) {
+                if (i < individualBottlesCount) {
+                    // Filled slot: Find corresponding wine added to show grape color/reference
+                    slotsHTML += `
+                    <div class="aspect-[2/3] bg-gradient-to-b from-wine-900 to-wine-950 border border-gold-500/50 rounded-xl flex flex-col justify-center items-center shadow-lg transform scale-105 transition-all duration-300 relative group">
+                        <div class="absolute -top-1.5 -right-1.5 bg-gold-400 text-black text-[8px] font-bold w-4 h-4 rounded-full flex items-center justify-center">✓</div>
+                        <!-- Mini Bottle Asset -->
+                        <svg class="w-6 h-12 text-gold-400" viewBox="0 0 100 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M50 15C49 15 48 16 48 17V60C48 75 35 90 28 105C22 118 20 135 20 155V275C20 285 28 290 35 290H65C72 290 80 285 80 275V155C80 135 78 118 72 105C65 90 52 75 52 60V17C52 16 51 15 50 15Z" fill="#150508" stroke="currentColor" stroke-width="4"/>
+                        </svg>
+                        <span class="text-[8px] uppercase tracking-wider text-gold-400 font-bold mt-1">Nº ${i+1}</span>
+                    </div>
+                    `;
+                } else {
+                    // Empty slot
+                    slotsHTML += `
+                    <div class="aspect-[2/3] bg-graphite-900/60 border border-white/5 border-dashed rounded-xl flex flex-col justify-center items-center text-gray-600 hover:border-wine-500/30 hover:text-gray-400 transition-colors">
+                        <span class="font-serif text-lg font-light">+</span>
+                        <span class="text-[8px] uppercase tracking-widest mt-1">Vazio</span>
+                    </div>
+                    `;
+                }
+            }
+            container.innerHTML = slotsHTML;
+
+            // Update numerical text inside interactive visual block
+            document.getElementById('box-bottle-count').innerText = individualBottlesCount;
+            document.getElementById('box-progress-bar').style.width = `${progressPercentage}%`;
+
+            // Setup customized feedback area
+            const feedbackText = document.getElementById('box-feedback-text');
+            const progressBadge = document.getElementById('shipping-status-badge');
+            
+            if (individualBottlesCount === 0) {
+                feedbackText.innerText = "Sua caixa está vazia. Adicione vinhos avulsos para iniciar a sua montagem.";
+                progressBadge.innerText = "Aguardando";
+                progressBadge.className = "px-2 py-0.5 text-[10px] uppercase font-bold bg-gray-700 text-gray-300 rounded";
+            } else if (individualBottlesCount < 3) {
+                const diff = 3 - individualBottlesCount;
+                feedbackText.innerText = `Falta(m) ${diff} garrafa(s) para o pedido mínimo (múltiplos de 3 ou 6 ajudam no transporte).`;
+                progressBadge.innerText = "Montando";
+                progressBadge.className = "px-2 py-0.5 text-[10px] uppercase font-bold bg-wine-800 text-wine-300 rounded";
+            } else if (individualBottlesCount >= 3 && individualBottlesCount < 6) {
+                const diff = 6 - individualBottlesCount;
+                feedbackText.innerText = `Ótima escolha! Faltam apenas ${diff} garrafa(s) para atingir 6 unidades e liberar o Frete Grátis.`;
+                progressBadge.innerText = "Pedido Mínimo OK";
+                progressBadge.className = "px-2 py-0.5 text-[10px] uppercase font-bold bg-blue-900 text-blue-200 rounded";
+            } else if (individualBottlesCount === 6) {
+                feedbackText.innerText = "Parabéns! Sua caixa de 6 garrafas está completa. Você ganhou FRETE GRÁTIS!";
+                progressBadge.innerText = "FRETE GRÁTIS";
+                progressBadge.className = "px-2 py-0.5 text-[10px] uppercase font-bold bg-gold-500 text-black rounded animate-bounce";
+            } else {
+                const boxes = Math.ceil(individualBottlesCount / 6);
+                const currentBoxSlots = individualBottlesCount % 6;
+                if (currentBoxSlots === 0) {
+                    feedbackText.innerText = `Excelente! Você preencheu totalmente ${boxes} caixas. Todo o seu envio avulso possui FRETE GRÁTIS!`;
+                } else {
+                    const diff = 6 - currentBoxSlots;
+                    feedbackText.innerText = `Você está montando a ${boxes}ª caixa! Adicione mais ${diff} garrafa(s) para completar e otimizar o envio.`;
+                }
+                progressBadge.innerText = "FRETE GRÁTIS";
+                progressBadge.className = "px-2 py-0.5 text-[10px] uppercase font-bold bg-gold-500 text-black rounded";
+            }
+
+            // Sync dynamic visual data inside the cart too
+            document.getElementById('cart-box-helper-ratio').innerText = `${individualBottlesCount}/6`;
+            document.getElementById('cart-box-progress-bar').style.width = `${progressPercentage}%`;
+            
+            const cartShippingText = document.getElementById('cart-box-shipping-alert');
+            const cartShippingFee = document.getElementById('cart-shipping-fee');
+            
+            if (individualBottlesCount >= 6) {
+                cartShippingText.innerHTML = `<span class="text-gold-400 font-bold">✓ Parabéns! Frete Grátis Liberado para sua caixa</span>`;
+                cartShippingFee.innerText = "Grátis (Caixa completa)";
+                cartShippingFee.className = "text-gold-400 font-bold";
+            } else if (individualBottlesCount > 0) {
+                const diff = 6 - (individualBottlesCount % 6);
+                cartShippingText.innerText = `Adicione mais ${diff} garrafa(s) avulsa(s) para ganhar Frete Grátis!`;
+                cartShippingFee.innerText = calculatedShipping ? calculatedShipping.display : "Simule o frete pelo CEP";
+                cartShippingFee.className = "text-white font-medium";
+            } else {
+                // If they only have combos or nothing
+                const hasCombos = cart.some(item => item.isCombo);
+                if (hasCombos) {
+                    cartShippingText.innerText = "Combos possuem taxas especiais de entrega!";
+                    cartShippingFee.innerText = "Simule o frete pelo CEP";
+                    cartShippingFee.className = "text-white font-medium";
+                } else {
+                    cartShippingText.innerText = "Monte sua caixa com 6 vinhos para liberar o Frete Grátis.";
+                    cartShippingFee.innerText = "Simule o frete pelo CEP";
+                    cartShippingFee.className = "text-white font-medium";
+                }
+            }
+        }
+
+        // Render Slide-Out Cart List
+        function renderCart() {
+            const listContainer = document.getElementById('cart-items-list');
+            const badgeCount = document.getElementById('cart-badge-count');
+            const drawerCount = document.getElementById('drawer-item-count');
+            const subtotalEl = document.getElementById('cart-subtotal');
+            const totalEl = document.getElementById('cart-total');
+            const checkoutBtn = document.getElementById('checkout-btn');
+
+            // Set up badge counts (sum of total items)
+            const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
+            badgeCount.innerText = totalQuantity;
+            drawerCount.innerText = `${totalQuantity} ${totalQuantity === 1 ? 'item' : 'itens'}`;
+
+            if (cart.length === 0) {
+                listContainer.innerHTML = `
+                <div class="h-full flex flex-col items-center justify-center text-center text-gray-400 space-y-4 py-12">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 text-gray-600">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                    </svg>
+                    <p class="font-serif text-base text-white">Sua adega particular está vazia</p>
+                    <p class="text-xs max-w-xs px-4">Adicione garrafas avulsas na seção "Monte seu Kit" ou selecione um de nossos combos.</p>
+                </div>
+                `;
+                subtotalEl.innerText = "R$ 0,00";
+                totalEl.innerText = "R$ 0,00";
+                checkoutBtn.disabled = true;
+                return;
+            }
+
+            checkoutBtn.disabled = false;
+
+            // Render list of active items inside Cart Drawer
+            listContainer.innerHTML = cart.map(item => {
+                const subValue = item.price * item.quantity;
+                return `
+                <div class="flex items-center justify-between p-3.5 bg-graphite-950/60 border border-white/5 rounded-xl space-x-3 hover:border-white/10 transition-colors">
+                    
+                    <!-- Thumbnail representation -->
+                    <div class="w-12 h-16 bg-graphite-900 rounded-lg flex items-center justify-center border border-white/5 flex-shrink-0">
+                        ${item.isCombo ? `
+                            <span class="text-[9px] font-bold text-gold-500 text-center uppercase tracking-tighter">COMBO</span>
+                        ` : `
+                            <svg class="w-4 h-10 text-wine-600" viewBox="0 0 100 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M50 15C49 15 48 16 48 17V60C48 75 35 90 28 105C22 118 20 135 20 155V275C20 285 28 290 35 290H65C72 290 80 285 80 275V155C80 135 78 118 72 105C65 90 52 75 52 60V17C52 16 51 15 50 15Z" fill="#150508" stroke="currentColor" stroke-width="6"/>
+                            </svg>
+                        `}
+                    </div>
+
+                    <!-- Item info -->
+                    <div class="flex-1 min-w-0 space-y-1">
+                        <h4 class="text-sm font-semibold text-white truncate">${item.name}</h4>
+                        <p class="text-[11px] text-gray-400 truncate">${item.subtitle}</p>
+                        <p class="text-xs font-semibold text-gold-400">R$ ${item.price.toFixed(2)} un.</p>
+                    </div>
+
+                    <!-- Quantity controls + Remove button -->
+                    <div class="flex flex-col items-end justify-between space-y-2 flex-shrink-0">
+                        <button onclick="removeItemCompletely('${item.id}', ${item.isCombo})" class="text-gray-500 hover:text-rose-400 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                            </svg>
+                        </button>
+                        
+                        <div class="flex items-center space-x-2 bg-graphite-900 border border-white/5 rounded px-2 py-1">
+                            <button onclick="changeCartItemQuantity('${item.id}', ${item.isCombo}, -1)" class="text-[11px] font-bold text-gray-400 hover:text-white">-</button>
+                            <span class="text-xs font-semibold text-white min-w-[12px] text-center">${item.quantity}</span>
+                            <button onclick="changeCartItemQuantity('${item.id}', ${item.isCombo}, 1)" class="text-[11px] font-bold text-gray-400 hover:text-white">+</button>
+                        </div>
+                    </div>
+
+                </div>
+                `;
+            }).join('');
+
+            // Calculate Totals
+            const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            subtotalEl.innerText = `R$ ${subtotal.toFixed(2)}`;
+
+            const individualBottlesCount = cart
+                .filter(item => !item.isCombo)
+                .reduce((total, item) => total + item.quantity, 0);
+            const hasFreeShipping = individualBottlesCount >= 6;
+            const shippingCost = (calculatedShipping && !hasFreeShipping) ? calculatedShipping.rate : 0;
+            const total = subtotal + shippingCost;
+            totalEl.innerText = `R$ ${total.toFixed(2)}`;
+        }
+
+
+        // 5. INTERACTION LOGIC & EVENT HANDLERS
+
+        // UI Drawer Toggle
+        function toggleCart(show) {
+            const overlay = document.getElementById('cart-drawer-overlay');
+            const drawer = document.getElementById('cart-drawer');
+            
+            if (show) {
+                overlay.classList.remove('pointer-events-none', 'opacity-0');
+                overlay.classList.add('opacity-100');
+                
+                drawer.classList.remove('translate-x-full');
+            } else {
+                overlay.classList.add('pointer-events-none', 'opacity-0');
+                overlay.classList.remove('opacity-100');
+                
+                drawer.classList.add('translate-x-full');
+            }
+        }
+
+        // Toast Messages Trigger
+        function showToast(text) {
+            const toast = document.getElementById('toast');
+            const toastText = document.getElementById('toast-text');
+            
+            toastText.innerText = text;
+            toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+            }, 3000);
+        }
+
+        // Action: Add static combo to cart
+        function addComboToCart(comboId) {
+            const comboObj = COMBOS_DATABASE.find(c => c.id === comboId);
+            if (!comboObj) return;
+
+            // Check if already in cart
+            const existing = cart.find(item => item.id === comboId && item.isCombo);
+            
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({
+                    id: comboObj.id,
+                    name: comboObj.name,
+                    subtitle: "Sugestão de Sommelier",
+                    price: comboObj.promoPrice,
+                    quantity: 1,
+                    isCombo: true
+                });
+            }
+
+            saveCartToStorage();
+            renderCart();
+            renderBoxSlots();
+            showToast(`${comboObj.name} adicionado ao seu carrinho!`);
+        }
+
+        // Action: Update individual bottle quantity from catalog and slot helper
+        function updateWineQty(wineId, change) {
+            const wineObj = WINES_DATABASE.find(w => w.id === wineId);
+            if (!wineObj) return;
+
+            // Find current quantities in cart
+            const cartIndex = cart.findIndex(item => item.id === wineId && !item.isCombo);
+
+            if (cartIndex > -1) {
+                const newQty = cart[cartIndex].quantity + change;
+                if (newQty <= 0) {
+                    cart.splice(cartIndex, 1);
+                } else {
+                    cart[cartIndex].quantity = newQty;
+                }
+            } else if (change > 0) {
+                cart.push({
+                    id: wineObj.id,
+                    name: wineObj.name,
+                    subtitle: wineObj.type,
+                    price: wineObj.price,
+                    quantity: 1,
+                    isCombo: false
+                });
+            }
+
+            saveCartToStorage();
+            renderWines();
+            renderCart();
+            renderBoxSlots();
+            
+            if (change > 0) {
+                showToast(`1 garrafa de ${wineObj.name} adicionada ao seu Kit!`);
+            }
+        }
+
+        // Action: Adjust qty inside Cart Drawer
+        function changeCartItemQuantity(itemId, isCombo, change) {
+            const cartIndex = cart.findIndex(item => item.id === itemId && item.isCombo === isCombo);
+            if (cartIndex === -1) return;
+
+            const newQty = cart[cartIndex].quantity + change;
+            if (newQty <= 0) {
+                cart.splice(cartIndex, 1);
+            } else {
+                cart[cartIndex].quantity = newQty;
+            }
+
+            saveCartToStorage();
+            renderWines();
+            renderCart();
+            renderBoxSlots();
+        }
+
+        // Action: Complete deletion from cart
+        function removeItemCompletely(itemId, isCombo) {
+            cart = cart.filter(item => !(item.id === itemId && item.isCombo === isCombo));
+            
+            saveCartToStorage();
+            renderWines();
+            renderCart();
+            renderBoxSlots();
+            showToast("Item removido do carrinho.");
+        }
+
+
+        // 6. CHECKOUT WITH BEAUTIFUL WHATSAPP FORMATTING
+        function finalizeOrder() {
+            if (cart.length === 0) return;
+
+            const individualBottles = cart.filter(item => !item.isCombo);
+            const combos = cart.filter(item => item.isCombo);
+            const totalIndividualCount = individualBottles.reduce((total, item) => total + item.quantity, 0);
+
+            // WhatsApp Message Composition (Premium style spacing & emojis)
+            let message = `🍷 *NOVO PEDIDO - LA CORDILLERA SELECCIÓN* 🍷\n`;
+            message += `-------------------------------------------\n\n`;
+            message += `Olá! Gostaria de finalizar a compra dos seguintes vinhos argentinos:\n\n`;
+
+            if (combos.length > 0) {
+                message += `📦 *COMBOS SELECIONADOS:*\n`;
+                combos.forEach(item => {
+                    message += `• ${item.quantity}x ${item.name} - R$ ${(item.price * item.quantity).toFixed(2)}\n`;
+                });
+                message += `\n`;
+            }
+
+            if (individualBottles.length > 0) {
+                message += `🍷 *KIT PERSONALIZADO (AVULSOS):*\n`;
+                individualBottles.forEach(item => {
+                    message += `• ${item.quantity}x ${item.name} (${item.subtitle}) - R$ ${(item.price * item.quantity).toFixed(2)}\n`;
+                });
+                message += `\n`;
+            }
+
+            // Calculations summary
+            const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            message += `-------------------------------------------\n`;
+            message += `📊 *RESUMO DO PEDIDO:*\n`;
+            message += `• Subtotal Vinhos: R$ ${subtotal.toFixed(2)}\n`;
+            
+            // Check box logic for free shipping
+            const hasFreeShip = totalIndividualCount >= 6;
+            if (hasFreeShip) {
+                message += `• Caixa com ${totalIndividualCount} Garrafas Avulsas: *FRETE GRÁTIS ATIVADO!* 🎉\n`;
+            } else {
+                message += `• Garrafas avulsas: ${totalIndividualCount}/6 para frete grátis.\n`;
+            }
+
+            // Add CEP info if available
+            if (userCEP) {
+                const formattedCEP = `${userCEP.slice(0,5)}-${userCEP.slice(5)}`;
+                if (calculatedShipping) {
+                    message += `• CEP de entrega: ${formattedCEP} (${calculatedShipping.region})\n`;
+                    message += `• Frete calculado: ${calculatedShipping.display}\n`;
+                } else {
+                    message += `• CEP: ${formattedCEP}\n`;
+                }
+            }
+
+            const totalWithShipping = hasFreeShip ? subtotal : (subtotal + (calculatedShipping ? calculatedShipping.rate : 0));
+            message += `• Total estimado: *R$ ${subtotal.toFixed(2)}${!hasFreeShip && calculatedShipping ? ` + frete` : ``}*\n`;
+            if (hasFreeShip) {
+                message += `• Valor Final: *R$ ${subtotal.toFixed(2)}* (Frete Grátis)\n\n`;
+            } else {
+                message += `• Valor com frete: *R$ ${totalWithShipping.toFixed(2)}* (frete calculado)\n\n`;
+            }
+
+            message += `Por favor, me informe as opções e o prazo de entrega.`;
+
+            // URI Encoding
+            const encodedText = encodeURIComponent(message);
+            const finalWhatsAppUrl = `https://api.whatsapp.com/send?phone=${CONTACT_WHATSAPP_NUMBER}&text=${encodedText}`;
+
+            // Redirect user safely to WhatsApp API
+            window.open(finalWhatsAppUrl, '_blank');
+        }
+
+
+        // INITIALIZATION
+        window.addEventListener('DOMContentLoaded', () => {
+            loadCartFromStorage();
+            renderCombos();
+            renderWines();
+            renderBoxSlots();
+            renderCart();
+        });
+    </script>
+</body>
+</html>

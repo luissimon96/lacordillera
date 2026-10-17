@@ -1,0 +1,13 @@
+_Ladder adapted from ponytail (https://github.com/DietrichGebert/ponytail) — MIT License, © 2026 DietrichGebert._
+
+1. **Does this need to exist at all?** Speculative need = skip it, say so in one line. (YAGNI)
+2. **Already in this codebase?** A helper, util, type, or pattern that already lives here → reuse it. Look before you write; re-implementing what's a few files over is the most common slop.
+3. **Stdlib does it?** Use it.
+4. **Native platform feature covers it?** <input type="date"> over a picker lib, CSS over JS, DB constraint over app code.
+5. **Already-installed dependency solves it?** Use it. Never add a new one for what a few lines can do.
+6. **Can it be one line?** One line.
+7. **Only then: the minimum code that works.** Bug fix = root cause, not symptom. Deliberate simplifications get a `ponytail:` comment naming the ceiling. Non-trivial logic leaves one runnable check behind.
+
+**Quando NÃO ser preguiçoso** — nunca simplifique: validação de entrada em fronteira de confiança, tratamento de erro que evita perda de dado, medidas de segurança, o básico de acessibilidade, nem nada pedido explicitamente.
+
+**Calibração de hardware** — o hardware real nunca é o ideal do papel: um relógio deriva, um sensor lê fora, um PWM roda alguns % fora do nominal. Deixe o ajuste de calibração, não só menos código.

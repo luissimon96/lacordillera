@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "hooks": {
+    "preToolUse": [
+      {
+        "type": "command",
+        "bash": "agf hooks run pre-tool",
+        "powershell": "agf hooks run pre-tool",
+        "timeoutSec": 5
+      },
+      {
+        "type": "command",
+        "bash": "agf hooks run pre-tool",
+        "powershell": "agf hooks run pre-tool",
+        "timeoutSec": 5
+      }
+    ],
+    "postToolUse": [
+      {
+        "type": "command",
+        "bash": "agf hooks run post-bash",
+        "powershell": "agf hooks run post-bash",
+        "timeoutSec": 30
+      }
+    ],
+    "sessionStart": [
+      {
+        "type": "command",
+        "bash": "agf hooks run session-start --cli copilot",
+        "powershell": "agf hooks run session-start --cli copilot",
+        "timeoutSec": 30
+      }
+    ]
+  }
+}
